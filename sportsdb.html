@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportsdb</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="text-center text-primary">Search your favorite Team</h1>
+
+    <!-- input field and search button -->
+    <div class="input-group mb-3 w-50 mx-auto">
+        <input id="inputField" type="text" class="form-control" placeholder="Search your Team" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button onclick="searchUpdate()" class="btn btn-primary" type="button" id="button-addon2 searchButton">Button</button>
+    </div>
+
+    <!-- Spinner -->
+    <div class="d-flex justify-content-center mt-5 d-none" id="spinner">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Error message when no input value-->
+    <div style="display: none;" id="error-message">
+        <p>Please, insert Name</p>
+    </div>
+
+    <!-- Error message when not match with search-->
+    <div style="display: none;" id="error-not-found">
+        <p>Please, insert valid Team name</p>
+    </div>
+
+    <!--Display Specific Meal -->
+    <div class="m-5" id="specificTeamResult">
+
+    </div>
+
+    <!--Display Search result -->
+    <div id="searchResult" class="row row-cols-1 row-cols-md-3 g-4">
+
+    </div>
+    
+    <!-- Bootstrap js-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <!-- my js -->
+    <script src="sportsdb.js"></script>
+</body>
+</html>
