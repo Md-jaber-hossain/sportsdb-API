@@ -13,7 +13,7 @@ function searchUpdate(){
         fetch(url)
         .then(res => res.json())
         // .then(data => console.log(data))
-        .then(data => displaySearchValue(data.teams))
+        .then(data => displaySearchValue(data))
         .catch(error => displaySearchNotFound(error));
     }
 }
@@ -23,11 +23,17 @@ function displaySearchNotFound(error){
     // document.getElementById('error-not-found').innerText = error;
 }
 
-function displaySearchValue(teams){
+function displaySearchValue(data){
+
+    const specificTeamResult = document.getElementById('specificTeamResult');
+    specificTeamResult.textContent = '';
+
     document.getElementById("spinner").classList.add("d-none");
     document.getElementById('error-not-found').style.display = 'none';
+
     const searchResult = document.getElementById('searchResult');
     searchResult.textContent = '';
+    const teams = data.teams;
     for(const team of teams){
         console.log(team);
         const div = document.createElement('div');
