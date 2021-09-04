@@ -7,6 +7,7 @@ function searchUpdate(){
     document.getElementById('error-message').style.display = 'none';
     document.getElementById('error-not-found').style.display = 'none';
     document.getElementById('searchResult').textContent = '';
+    document.getElementById('specificTeamResult').textContent = '';
     if(inputValue <= 0){
         document.getElementById('error-message').style.display = 'block';
     }
