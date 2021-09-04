@@ -5,6 +5,8 @@ function searchUpdate(){
     inputField.value = '';
     const url = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${inputValue}`
     document.getElementById('error-message').style.display = 'none';
+    document.getElementById('error-not-found').style.display = 'none';
+    document.getElementById('searchResult').textContent = '';
     if(inputValue <= 0){
         document.getElementById('error-message').style.display = 'block';
     }
@@ -12,13 +14,12 @@ function searchUpdate(){
         document.getElementById("spinner").classList.remove("d-none");
         fetch(url)
         .then(res => res.json())
-        // .then(data => console.log(data))
         .then(data => displaySearchValue(data))
-        .catch(error => displaySearchNotFound(error));
+        // .catch(error => displaySearchNotFound(error));
     }
 }
 
-function displaySearchNotFound(error){
+function displaySearchNotFound(){
     document.getElementById('error-not-found').style.display = 'block';
     // document.getElementById('error-not-found').innerText = error;
 }
@@ -27,27 +28,31 @@ function displaySearchValue(data){
 
     const specificTeamResult = document.getElementById('specificTeamResult');
     specificTeamResult.textContent = '';
-
     document.getElementById("spinner").classList.add("d-none");
     document.getElementById('error-not-found').style.display = 'none';
 
     const searchResult = document.getElementById('searchResult');
     searchResult.textContent = '';
     const teams = data.teams;
-    for(const team of teams){
-        console.log(team);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `
-        <div onclick="specificMeal('${team.strTeam}')" class="card h-100">
-        <img src="${team.strTeamBadge}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${team.strCountry}</h5>
-          <h5 class="card-title">${team.strTeam}</h5>
-          <p class="card-text">${team.strDescriptionEN.slice(0,150)}</p>
-        </div>
-        </div>`;
-        searchResult.appendChild(div);
+    if(teams === null){
+        displaySearchNotFound();
+    }
+    else{
+        for(const team of teams){
+            console.log(team);
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+            <div onclick="specificMeal('${team.strTeam}')" class="card h-100">
+            <img src="${team.strTeamBadge}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${team.strCountry}</h5>
+              <h5 class="card-title">${team.strTeam}</h5>
+              <p class="card-text">${team?.strDescriptionEN?.slice(0,150)}</p>
+            </div>
+            </div>`;
+            searchResult.appendChild(div);
+        }
     }
 }
 
