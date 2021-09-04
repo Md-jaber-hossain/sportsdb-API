@@ -44,7 +44,7 @@ function displaySearchValue(data){
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-            <div onclick="specificMeal('${team.strTeam}')" class="card h-100">
+            <div onclick="specificTeam('${team.strTeam}')" class="card h-100">
             <img src="${team.strTeamBadge}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${team.strCountry}</h5>
@@ -57,7 +57,7 @@ function displaySearchValue(data){
     }
 }
 
-function specificMeal(teamName){
+function specificTeam(teamName){
     const url2 = `https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${teamName}`;
     fetch(url2)
     .then(res => res.json())
